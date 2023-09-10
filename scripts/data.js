@@ -1,3 +1,22 @@
+export const navLinks = [
+  {
+    texto: "Home",
+    link: "home"
+  },
+  {
+    texto: "Destinos",
+    link: "destinos"
+  },
+  {
+    texto: "Promoções",
+    link: "promocoes"
+  },
+  {
+    texto: "Contato",
+    link: "contato"
+  },
+]
+
 export const destinos = [
   {
     tipo: 'nacional',
@@ -119,6 +138,5 @@ export const destinos = [
     desconto: 10,
     popularidade: 3,
   },
-
-
 ]
+

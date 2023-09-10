@@ -1,4 +1,4 @@
-import { DestinationCard, Footer, Navbar } from "../../scripts/components.js";
+import { DestinationCard, Footer, Navbar } from "../../components/index.js";
 import { destinos } from "../../scripts/data.js";
 import { onScroll, setCurrentPage } from "../../scripts/functions.js";
 

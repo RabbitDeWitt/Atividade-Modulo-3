@@ -1,4 +1,4 @@
-import { Footer, Navbar } from "../../scripts/components.js";
+import { Footer, Navbar } from "../../components/index.js";
 import { onScroll, setCurrentPage } from "../../scripts/functions.js";
 
 const header = document.querySelector("header")

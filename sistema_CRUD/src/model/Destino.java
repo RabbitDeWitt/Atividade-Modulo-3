@@ -8,10 +8,11 @@ public class Destino {
 	private String estado;
 	private String pais;
 	
-	public Destino(String nome, String estado, String pais) {
+	public Destino(String nome, String estado, String pais, float valor) {
 		this.nome = nome;
 		this.estado = estado;
 		this.pais = pais;
+		this.valor = valor;
 	}
 	
 	public Destino(int id, String nome, String estado, String pais, float valor){
@@ -58,4 +59,13 @@ public class Destino {
 		return idDestino;
 	}
 
+	public void mostrar() {
+		System.out.println("=====================================");
+		System.out.println("ID: "+this.idDestino);
+		System.out.println("Nome: "+this.nome);
+		System.out.println("Pais: "+this.pais);
+		System.out.println("Estado: "+this.estado);
+		System.out.printf("Valor: R$%.2f %n",this.valor);
+		System.out.println("=====================================");
+	}
 }

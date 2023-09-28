@@ -3,14 +3,14 @@ package model;
 public class Pacote {
 	private int id;
 	private String nome;
-	private double valor;
+	private float valor;
 	
-	public Pacote(String nome, double valor) {
+	public Pacote(String nome, float valor) {
 		this.nome = nome;
 		this.valor = valor;
 	}
 
-	public Pacote(int id, String nome, double valor) {
+	public Pacote(int id, String nome, float valor) {
 		this.id = id;
 		this.nome = nome;
 		this.valor = valor;
@@ -32,14 +32,21 @@ public class Pacote {
 		this.nome = nome;
 	}
 
-	public double getValor() {
+	public float getValor() {
 		return valor;
 	}
 
-	public void setValor(double valor) {
+	public void setValor(float valor) {
 		this.valor = valor;
 	}
 	
+	public void mostrar() {
+		System.out.println("=====================================");
+		System.out.println("ID: "+this.id);
+		System.out.println("Nome: "+this.nome);
+		System.out.printf("Valor: R$%.2f %n",this.valor);
+		System.out.println("=====================================");
+	}
 	
 
 }

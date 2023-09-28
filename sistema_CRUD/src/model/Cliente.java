@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Cliente {
 
-	private int idCliente;
+	private int id;
 	private String nome;
 	private Date dataNasc;
 	private String numPassaporte;
@@ -18,7 +18,7 @@ public class Cliente {
 	}
 	
 	public Cliente(int id, String nome, Date dataNasc, String telefone, String numPassaporte){
-		this.idCliente = id;
+		this.id = id;
 		this.nome = nome;
 		this.dataNasc = dataNasc;
 		this.telefone = telefone;
@@ -57,12 +57,13 @@ public class Cliente {
 		this.telefone = telefone;
 	}
 
-	public int getIdCliente() {
-		return idCliente;
+	public int getId() {
+		return id;
 	}
 	
 	public void mostrar() {
 		System.out.println("=====================================");
+		System.out.println("ID: "+this.id);
 		System.out.println("Nome: "+this.nome);
 		System.out.println("Data de Nasc: "+this.dataNasc);
 		System.out.println("Telefone: "+this.telefone);

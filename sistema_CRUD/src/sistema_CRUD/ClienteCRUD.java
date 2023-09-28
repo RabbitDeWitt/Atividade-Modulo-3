@@ -11,6 +11,7 @@ import factory.ConnectionFactory;
 import model.Cliente;
 
 public class ClienteCRUD {
+		
 		public static void cadastrar(Cliente cliente) {
 			String sql = "INSERT INTO cliente(nome, dataNasc, telefone, numPassaporte)" + "VALUES(?,?,?,?)";
 			Connection con = null;
@@ -44,7 +45,7 @@ public class ClienteCRUD {
 		}
 		
 		public static void atualizar(Cliente cliente) {
-			String sql = "UPDATE cliente SET nome = ?, dataNasc = ?, telefone = ?, numPassaporte = ?" + "WHERE idCliente = ?";
+			String sql = "UPDATE cliente SET nome = ?, dataNasc = ?, telefone = ?, numPassaporte = ?" + "WHERE Id = ?";
 			Connection con = null;
 			PreparedStatement pstm = null;
 			
@@ -56,7 +57,7 @@ public class ClienteCRUD {
 				pstm.setDate(2, new Date(cliente.getDataNasc().getTime()));
 				pstm.setString(3, cliente.getTelefone());
 				pstm.setString(4, cliente.getNumPassaporte());
-				pstm.setInt(5, cliente.getIdCliente());
+				pstm.setInt(5, cliente.getId());
 				
 				pstm.execute();
 				
@@ -93,7 +94,7 @@ public class ClienteCRUD {
 				
 				while (resultado.next()) {
 					
-					int id = resultado.getInt("idCliente");
+					int id = resultado.getInt("Id");
 					String nome = resultado.getString("nome");
 					Date dataNasc = resultado.getDate("dataNasc");
 					String telefone = resultado.getString("telefone");
@@ -121,7 +122,7 @@ public class ClienteCRUD {
 		}
 
 		public static void removerPorId(int id) {
-			String sql = "DELETE FROM cliente WHERE idCliente = ?";
+			String sql = "DELETE FROM cliente WHERE Id = ?";
 			
 			Connection con = null;
 			PreparedStatement pstm = null;

@@ -11,6 +11,10 @@ public class Reserva {
 	private Pacote pacote;
 	private float valorTotal;
 	
+	public Reserva() {
+		
+	}
+	
 	
 	public Reserva(Date dataPartida, Date dataRetorno, Cliente cliente, Destino destino, Pacote pacote) {
 		this.dataPartida = dataPartida;
@@ -21,13 +25,14 @@ public class Reserva {
 		this.valorTotal = destino.getValor() + pacote.getValor();
 	}
 
-	public Reserva(int id, Date dataPartida, Date dataRetorno, Cliente cliente, Destino destino, Pacote pacote) {
+	public Reserva(int id, Date dataPartida, Date dataRetorno, Cliente cliente, Destino destino, Pacote pacote, float valorTotal) {
 		this.id = id;
 		this.dataPartida = dataPartida;
 		this.dataRetorno = dataRetorno;
 		this.cliente = cliente;
 		this.destino = destino;
 		this.pacote = pacote;
+		this.valorTotal = valorTotal;
 	}
 
 	public int getId() {
@@ -94,7 +99,7 @@ public class Reserva {
 		System.out.println("Partida: "+this.dataPartida);
 		System.out.println("Retorno: "+this.dataRetorno);
 		System.out.println("Pacote: "+this.pacote.getNome());
-		System.out.printf("Valor Total: R$"+this.valorTotal);
+		System.out.printf("Valor Total: R$%.2f %n",this.valorTotal);
 		System.out.println("=====================================");
 	}
 	

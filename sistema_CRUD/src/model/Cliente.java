@@ -10,6 +10,10 @@ public class Cliente {
 	private String numPassaporte;
 	private String telefone;
 	
+	public Cliente() {
+		
+	}
+	
 	public Cliente(String nome, Date dataNasc, String telefone ,String numPassaporte) {
 		this.nome = nome;
 		this.dataNasc = dataNasc;
@@ -60,6 +64,11 @@ public class Cliente {
 	public int getId() {
 		return id;
 	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	
 	public void mostrar() {
 		System.out.println("=====================================");

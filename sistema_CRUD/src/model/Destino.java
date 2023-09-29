@@ -2,11 +2,15 @@ package model;
 
 public class Destino {
 
-	private int idDestino;
+	private int id;
 	private String nome;
 	private float valor;
 	private String estado;
 	private String pais;
+	
+	public Destino() {
+		
+	}
 	
 	public Destino(String nome, String estado, String pais, float valor) {
 		this.nome = nome;
@@ -16,7 +20,7 @@ public class Destino {
 	}
 	
 	public Destino(int id, String nome, String estado, String pais, float valor){
-		this.idDestino = id;
+		this.id = id;
 		this.nome = nome;
 		this.estado = estado;
 		this.valor = valor;
@@ -55,13 +59,17 @@ public class Destino {
 		this.pais = pais;
 	}
 
-	public int getIdDestino() {
-		return idDestino;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public void mostrar() {
 		System.out.println("=====================================");
-		System.out.println("ID: "+this.idDestino);
+		System.out.println("ID: "+this.id);
 		System.out.println("Nome: "+this.nome);
 		System.out.println("Pais: "+this.pais);
 		System.out.println("Estado: "+this.estado);

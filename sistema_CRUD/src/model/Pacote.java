@@ -5,6 +5,10 @@ public class Pacote {
 	private String nome;
 	private float valor;
 	
+	public Pacote() {
+		
+	}
+	
 	public Pacote(String nome, float valor) {
 		this.nome = nome;
 		this.valor = valor;

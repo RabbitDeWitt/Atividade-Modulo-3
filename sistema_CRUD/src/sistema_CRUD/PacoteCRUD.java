@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import factory.ConnectionFactory;
+import model.Cliente;
 import model.Pacote;
 
 public class PacoteCRUD {
@@ -79,6 +80,45 @@ public class PacoteCRUD {
 			}
 		}
 		return pacotes;
+	}
+	
+	public static Pacote consultarPacote(int id) {
+		String sql = "select * from pacote WHERE idPacote = ?";
+
+		Pacote pacote = new Pacote();
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet resultado = null;
+		
+		try {
+			con = ConnectionFactory.criarConexao();
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, id);
+			resultado = pstm.executeQuery();
+			
+			resultado.next(); 
+				
+				pacote.setId(resultado.getInt("idPacote"));
+				pacote.setNome(resultado.getString("nome"));
+				pacote.setValor(resultado.getFloat("valorPacote"));
+				
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstm != null) {
+					pstm.close();
+				}
+				if(con != null) {
+					con.close();
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return pacote;
 	}
 	
 	public static void atualizar(Pacote pacote) {

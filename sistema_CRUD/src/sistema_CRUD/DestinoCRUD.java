@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import factory.ConnectionFactory;
+import model.Cliente;
 import model.Destino;
 
 
@@ -59,7 +60,7 @@ public class DestinoCRUD {
 			
 			while (resultado.next()) {
 				
-				int id = resultado.getInt("iddestino");
+				int id = resultado.getInt("idDestino");
 				String nome = resultado.getString("nome");
 				String estado = resultado.getString("estado");
 				String pais = resultado.getString("pais");
@@ -86,6 +87,47 @@ public class DestinoCRUD {
 		return destinos;
 	}
 	
+	public static Destino consultarDestino(int id) {
+		String sql = "select * from destino WHERE idDestino = ?";
+
+		Destino destino = new Destino();
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet resultado = null;
+		
+		try {
+			con = ConnectionFactory.criarConexao();
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, id);
+			resultado = pstm.executeQuery();
+			
+			resultado.next(); 
+				
+				destino.setId(resultado.getInt("idDestino"));
+				destino.setNome(resultado.getString("nome"));
+				destino.setEstado(resultado.getString("estado"));
+				destino.setPais(resultado.getString("pais"));
+				destino.setValor(resultado.getFloat("valor"));
+				
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstm != null) {
+					pstm.close();
+				}
+				if(con != null) {
+					con.close();
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return destino;
+	}
+	
 	public static void atualizar(Destino destino) {
 		String sql = "UPDATE destino SET nome = ?, estado = ?, pais = ?, valor = ?" + "WHERE idDestino = ?";
 		Connection con = null;
@@ -99,7 +141,7 @@ public class DestinoCRUD {
 			pstm.setString(2, destino.getEstado());
 			pstm.setString(3, destino.getPais());
 			pstm.setFloat(4, destino.getValor());
-			pstm.setInt(5, destino.getIdDestino());
+			pstm.setInt(5, destino.getId());
 			
 			pstm.execute();
 			

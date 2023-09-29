@@ -3,22 +3,25 @@ import java.util.Date;
 import model.Cliente;
 import model.Destino;
 import model.Pacote;
+import model.Reserva;
 import screen.Principal;
 import sistema_CRUD.ClienteCRUD;
 import sistema_CRUD.DestinoCRUD;
 import sistema_CRUD.PacoteCRUD;
+import sistema_CRUD.ReservaCRUD;
 
 public class Sistema {
 	public static void main(String[] args) {
 		//Principal.exibirMenu();
 		
-		//Destino
-		//DestinoCRUD.cadastrar(new Destino("Zakk Wylde", new Date(),"55 (11) 1234-5678","BR000011"));
-		//DestinoCRUD.atualizar(new Destino(2, "John", new Date(),"55 (11) 6789-1234","BR000002"));
-		//DestinoCRUD.removerPorId(3);
-		//for(Destino Destino : DestinoCRUD.listarDestino()) {
-		//	Destino.mostrar();
+		//CLIENTE
+		//ClienteCRUD.cadastrar(new Cliente("Zakk Wylde", new Date(),"55 (11) 1234-5678","BR000011"));
+		//ClienteCRUD.atualizar(new Cliente(2, "John", new Date(),"55 (11) 6789-1234","BR000002"));
+		//ClienteCRUD.removerPorId(3);
+		//for(Cliente cliente : ClienteCRUD.listarCliente()) {
+		//	Cliente.mostrar();
 		//}
+		//ClienteCRUD.consultarCliente(5).mostrar();
 		
 		
 		//DESTINO
@@ -28,6 +31,7 @@ public class Sistema {
 		//for(Destino destino : DestinoCRUD.listarDestino()) {
 		//	destino.mostrar();
 		//}
+		//DestinoCRUD.consultarDestino(2).mostrar();
 		
 		//PACOTES
 		//PacoteCRUD.cadastrar(new Pacote("Economico", 0));
@@ -37,14 +41,14 @@ public class Sistema {
 		//for(Pacote pacote : PacoteCRUD.listarPacote()) {
 		//	pacote.mostrar();
 		//}
+		//PacoteCRUD.consultarPacote(2).mostrar();
 		
 		//RESERVA
-		Cliente hendrix = new Cliente("Jimi Hendrix", new Date(), "(55) 55 1234-5678", "BR123456");
-		Destino bahia = new Destino("Bahia", "BA", "Brasil", 600);
-		Pacote extra = new Pacote("Extra", 200);
-		//ClienteCRUD.cadastrar(hendrix);
-		//DestinoCRUD.cadastrar(bahia);
-		//PacoteCRUD.cadastrar(extra);
+		Cliente cliente = ClienteCRUD.consultarCliente(7);
+		Destino destino = DestinoCRUD.consultarDestino(3);
+		Pacote pacote = PacoteCRUD.consultarPacote(2);
+		
+		ReservaCRUD.cadastrar(new Reserva(new Date(), new Date(), cliente, destino, pacote));
 		
 		
 	}

@@ -120,6 +120,48 @@ public class ClienteCRUD {
 			}
 			return Clientes;
 		}
+		
+		public static Cliente consultarCliente(int id) {
+			String sql = "select * from cliente WHERE idCliente = ?";
+
+			Cliente cliente = new Cliente();
+			Connection con = null;
+			PreparedStatement pstm = null;
+			ResultSet resultado = null;
+			
+			try {
+				con = ConnectionFactory.criarConexao();
+				pstm = con.prepareStatement(sql);
+				pstm.setInt(1, id);
+				resultado = pstm.executeQuery();
+				
+				resultado.next(); 
+					
+					cliente.setId(resultado.getInt("idCliente"));
+					cliente.setNome(resultado.getString("nome"));
+					cliente.setDataNasc(resultado.getDate("dataNasc"));
+					cliente.setTelefone(resultado.getString("telefone"));
+					cliente.setNumPassaporte(resultado.getString("numPassaporte"));
+					
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(pstm != null) {
+						pstm.close();
+					}
+					if(con != null) {
+						con.close();
+					}
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+			return cliente;
+		}
+		
 
 		public static void removerPorId(int id) {
 			String sql = "DELETE FROM cliente WHERE Id = ?";

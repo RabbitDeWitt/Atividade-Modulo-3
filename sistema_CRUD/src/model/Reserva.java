@@ -18,6 +18,7 @@ public class Reserva {
 		this.cliente = cliente;
 		this.destino = destino;
 		this.pacote = pacote;
+		this.valorTotal = destino.getValor() + pacote.getValor();
 	}
 
 	public Reserva(int id, Date dataPartida, Date dataRetorno, Cliente cliente, Destino destino, Pacote pacote) {

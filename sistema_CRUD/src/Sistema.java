@@ -16,10 +16,10 @@ public class Sistema {
 		
 		//CLIENTE
 		//ClienteCRUD.cadastrar(new Cliente("Naruto", new Date(),"55 (11) 1234-5678","BR000011"));
-		//ClienteCRUD.atualizar(new Cliente(2, "John", new Date(),"55 (11) 6789-1234","BR000002"));
+		//ClienteCRUD.atualizar(new Cliente(9, "Naruto Uzumaki", new Date(),"55 (11) 6789-1234","BR000002"));
 		//ClienteCRUD.removerPorId(3);
 		//for(Cliente cliente : ClienteCRUD.listarCliente()) {
-		//	Cliente.mostrar();
+		//	cliente.mostrar();
 		//}
 		//ClienteCRUD.consultarCliente(5).mostrar();
 		
@@ -44,15 +44,20 @@ public class Sistema {
 		//PacoteCRUD.consultarPacote(2).mostrar();
 		
 		//RESERVA
-		Cliente cliente = ClienteCRUD.consultarCliente(9);
-		Destino destino = DestinoCRUD.consultarDestino(2);
-		Pacote pacote = PacoteCRUD.consultarPacote(2);
+		//Cliente cliente = ClienteCRUD.consultarCliente(8);
+		//Destino destino = DestinoCRUD.consultarDestino(2);
+		//Pacote pacote = PacoteCRUD.consultarPacote(3);
+		//Reserva reserva = ReservaCRUD.consultarReserva(6);
 		
-		ReservaCRUD.cadastrar(new Reserva(new Date(), new Date(), cliente, destino, pacote));
+		//reserva.mostrar();
+		//ReservaCRUD.atualizar(new Reserva(5, new Date(), new Date() , cliente, destino, pacote));
+	
 		
-		for (Reserva reserva : ReservaCRUD.listarReserva()) {
-			reserva.mostrar();
-		}
+		//ReservaCRUD.cadastrar(new Reserva(new Date(), new Date(), cliente, destino, pacote));
+		//ReservaCRUD.removerPorId(1);
+		//for (Reserva reserva : ReservaCRUD.listarReserva()) {
+		//	reserva.mostrar();
+		//}
 		
 		
 	}

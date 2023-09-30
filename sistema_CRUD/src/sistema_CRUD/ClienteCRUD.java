@@ -44,41 +44,6 @@ public class ClienteCRUD {
 			}
 		}
 		
-		public static void atualizar(Cliente cliente) {
-			String sql = "UPDATE cliente SET nome = ?, dataNasc = ?, telefone = ?, numPassaporte = ?" + "WHERE Id = ?";
-			Connection con = null;
-			PreparedStatement pstm = null;
-			
-			try {
-				con = ConnectionFactory.criarConexao();
-				pstm = con.prepareStatement(sql);
-				
-				pstm.setString(1, cliente.getNome());
-				pstm.setDate(2, new Date(cliente.getDataNasc().getTime()));
-				pstm.setString(3, cliente.getTelefone());
-				pstm.setString(4, cliente.getNumPassaporte());
-				pstm.setInt(5, cliente.getId());
-				
-				pstm.execute();
-				
-				System.out.println("Registro alterado com sucesso!!!");
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				try {
-					if(pstm != null) {
-						pstm.close();
-					}
-					if(con != null) {
-						con.close();
-					}
-				}catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
 		public static List<Cliente> listarCliente(){
 			String sql = "SELECT * FROM Cliente";
 			List<Cliente> Clientes = new ArrayList<Cliente>();
@@ -94,7 +59,7 @@ public class ClienteCRUD {
 				
 				while (resultado.next()) {
 					
-					int id = resultado.getInt("Id");
+					int id = resultado.getInt("idCliente");
 					String nome = resultado.getString("nome");
 					Date dataNasc = resultado.getDate("dataNasc");
 					String telefone = resultado.getString("telefone");
@@ -120,10 +85,10 @@ public class ClienteCRUD {
 			}
 			return Clientes;
 		}
-		
+
 		public static Cliente consultarCliente(int id) {
 			String sql = "select * from cliente WHERE idCliente = ?";
-
+		
 			Cliente cliente = new Cliente();
 			Connection con = null;
 			PreparedStatement pstm = null;
@@ -161,7 +126,41 @@ public class ClienteCRUD {
 			}
 			return cliente;
 		}
-		
+
+		public static void atualizar(Cliente cliente) {
+			String sql = "UPDATE cliente SET nome = ?, dataNasc = ?, telefone = ?, numPassaporte = ?" + "WHERE idCliente = ?";
+			Connection con = null;
+			PreparedStatement pstm = null;
+			
+			try {
+				con = ConnectionFactory.criarConexao();
+				pstm = con.prepareStatement(sql);
+				
+				pstm.setString(1, cliente.getNome());
+				pstm.setDate(2, new Date(cliente.getDataNasc().getTime()));
+				pstm.setString(3, cliente.getTelefone());
+				pstm.setString(4, cliente.getNumPassaporte());
+				pstm.setInt(5, cliente.getId());
+				
+				pstm.execute();
+				
+				System.out.println("Registro alterado com sucesso!!!");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(pstm != null) {
+						pstm.close();
+					}
+					if(con != null) {
+						con.close();
+					}
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
 		public static void removerPorId(int id) {
 			String sql = "DELETE FROM cliente WHERE Id = ?";

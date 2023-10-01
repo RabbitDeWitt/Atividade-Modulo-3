@@ -30,7 +30,7 @@ public class Secundaria extends Tela{
 			TelaDestino.exibirFormulario(operacao, opcao);
 			break;
 		case 3:
-			TelaReserva.exibirFormulario(operacao, opcao);
+			TelaReserva.exibirFormulario(operacao);
 			break;
 		case 4:
 			TelaPacote.exibirFormulario(operacao, opcao);

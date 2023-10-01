@@ -163,7 +163,7 @@ public class ClienteCRUD {
 		}
 
 		public static void removerPorId(int id) {
-			String sql = "DELETE FROM cliente WHERE Id = ?";
+			String sql = "DELETE FROM cliente WHERE IdCliente = ?";
 			
 			Connection con = null;
 			PreparedStatement pstm = null;

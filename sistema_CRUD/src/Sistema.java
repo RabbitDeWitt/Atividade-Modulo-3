@@ -12,12 +12,12 @@ import sistema_CRUD.ReservaCRUD;
 
 public class Sistema {
 	public static void main(String[] args) {
-		//Principal.exibirMenu();
+		Principal.exibirMenu();
 		
 		//CLIENTE
 		//ClienteCRUD.cadastrar(new Cliente("Naruto", new Date(),"55 (11) 1234-5678","BR000011"));
 		//ClienteCRUD.atualizar(new Cliente(9, "Naruto Uzumaki", new Date(),"55 (11) 6789-1234","BR000002"));
-		//ClienteCRUD.removerPorId(3);
+		//ClienteCRUD.removerPorId(4);
 		//for(Cliente cliente : ClienteCRUD.listarCliente()) {
 		//	cliente.mostrar();
 		//}
@@ -53,7 +53,7 @@ public class Sistema {
 		//ReservaCRUD.atualizar(new Reserva(5, new Date(), new Date() , cliente, destino, pacote));
 	
 		
-		//ReservaCRUD.cadastrar(new Reserva(new Date(), new Date(), cliente, destino, pacote));
+		//
 		//ReservaCRUD.removerPorId(1);
 		//for (Reserva reserva : ReservaCRUD.listarReserva()) {
 		//	reserva.mostrar();

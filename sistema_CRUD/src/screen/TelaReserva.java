@@ -15,7 +15,7 @@ import sistema_CRUD.PacoteCRUD;
 import sistema_CRUD.ReservaCRUD;
 
 public class TelaReserva extends Tela {
-	
+
 	private static void cadastrar() {
 		try (Scanner sc = new Scanner(System.in)) {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -40,16 +40,16 @@ public class TelaReserva extends Tela {
 
 			System.out.print("Pacote: ");
 			int idPacote = sc.nextInt();
-			
+
 			System.out.print("Data de Partida(DD/MM/AAAA): ");
 			String dataPartidaStr = sc.next();
-			
+
 			System.out.print("Data de Retorno(DD/MM/AAAA): ");
 			String dataRetornoStr = sc.next();
-			
+
 			Date dataPartida = new Date();
 			Date dataRetorno = new Date();
-			
+
 			try {
 				dataPartida = sdf.parse(dataPartidaStr);
 				dataRetorno = sdf.parse(dataRetornoStr);
@@ -63,9 +63,50 @@ public class TelaReserva extends Tela {
 
 			ReservaCRUD.cadastrar(new Reserva(dataPartida, dataRetorno, cliente, destino, pacote));
 		}
-	
+
 	}
 
+	private static void deletar() {
+		limparTela();
+		Scanner sc = new Scanner(System.in);
+		boolean concluido = false;
+
+		while (concluido == false) {
+			limparTela();
+			ReservaCRUD.listarReserva();
+			System.out.print("Digite o ID da reserva que voce deseja deletar:");
+			int id = sc.nextInt();
+
+			ReservaCRUD.consultarReserva(id);
+
+			System.out.println("===============================");
+			System.out.println("Deseja deletar essa reserva?");
+			System.out.println("1 - SIM      2-NAO");
+			System.out.println("===============================");
+
+			int opcao = sc.nextInt();
+
+			if (opcao == 1) {
+				ReservaCRUD.removerPorId(id);
+				concluido = true;
+			}
+		}
+		Principal.exibirMenu();
+		
+	}
+
+	private static void listar() {
+		ReservaCRUD.listarReserva();
+	}
+	
+	private static void consultar() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Digite o ID da reserva que voce deseja consultar:");
+		int id = sc.nextInt();
+
+		ReservaCRUD.consultarReserva(id);
+	}
+	
 	public static void exibirFormulario(int operacao) {
 		limparTela();
 		switch (operacao) {
@@ -73,17 +114,19 @@ public class TelaReserva extends Tela {
 			cadastrar();
 			break;
 		case 2:
-			System.out.println("Listar");
+			listar();
 			break;
 		case 3:
-			System.out.println("Editar");
+			consultar();
 			break;
 		case 4:
-			System.out.println("Deletar");
+			System.out.println("Editar");
+			break;
+		case 5:
+			deletar();
 			break;
 		}
-			
+
 	}
-	
 
 }

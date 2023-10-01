@@ -49,7 +49,7 @@ public class ReservaCRUD {
 		}
 	}
 	
-	public static List<Reserva> listarReserva(){
+	public static void listarReserva(){
 		String sql = "SELECT * FROM Reserva";
 		List<Reserva> Reservas = new ArrayList<Reserva>();
 		
@@ -95,10 +95,12 @@ public class ReservaCRUD {
 				e.printStackTrace();
 			}
 		}
-		return Reservas;
+		for (Reserva reserva : Reservas) {
+			reserva.mostrar();
+		}
 	}
 	
-	public static Reserva consultarReserva(int id) {
+	public static void consultarReserva(int id) {
 		String sql = "select * from reserva WHERE idReserva = ?";
 
 		Reserva reserva = new Reserva();
@@ -146,7 +148,7 @@ public class ReservaCRUD {
 			}
 			
 		}
-		return reserva;
+		reserva.mostrar();
 	}
 	
 	public static void atualizar(Reserva reserva) {

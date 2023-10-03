@@ -11,6 +11,7 @@ public class TelaPacote extends Tela {
 		try (Scanner sc = new Scanner(System.in)) {
 			System.out.print("Digite o nome do pacote: ");
 			String nome = sc.next();
+			
 			System.out.print("Digite o valor do pacote: ");
 			float valor = sc.nextFloat();
 
@@ -107,6 +108,7 @@ public class TelaPacote extends Tela {
 
 				if (opcao == 1) {
 					PacoteCRUD.removerPorId(id);
+					Principal.exibirMenu();
 				}else if(opcao == 2) {
 					Principal.exibirMenu();
 				}

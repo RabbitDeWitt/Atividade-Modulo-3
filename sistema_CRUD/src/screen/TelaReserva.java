@@ -176,6 +176,7 @@ public class TelaReserva extends Tela {
 
 				if (opcao == 1) {
 					ReservaCRUD.removerPorId(id);
+					Principal.exibirMenu();
 				}else if(opcao == 2) {
 					Principal.exibirMenu();
 				}

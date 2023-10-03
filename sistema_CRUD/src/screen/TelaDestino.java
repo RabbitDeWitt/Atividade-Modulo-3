@@ -119,6 +119,7 @@ public class TelaDestino extends Tela {
 
 				if (opcao == 1) {
 					DestinoCRUD.removerPorId(id);
+					Principal.exibirMenu();
 				}else if(opcao == 2) {
 					Principal.exibirMenu();
 				}

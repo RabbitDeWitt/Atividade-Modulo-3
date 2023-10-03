@@ -1,16 +1,92 @@
 package screen;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+import model.Cliente;
+import model.Pacote;
+import sistema_CRUD.ClienteCRUD;
+import sistema_CRUD.PacoteCRUD;
+
 public class TelaCliente extends Tela {
 	private static void cadastrar() {
-		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.print("Digite o nome do cliente: ");
+			String nome = sc.nextLine();
+			
+			
+			Date dataNasc = new Date();
+			System.out.print("Digite a data de nascimento: ");
+			String dataNascStr = sc.next();
+			
+			try {
+				dataNasc = sdf.parse(dataNascStr);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+			System.out.print("Digite o telefone: ");
+			String telefone = sc.next();
+
+			System.out.print("Digite o numero do passaporte: ");
+			String numPassaporte = sc.next();
+
+			ClienteCRUD.cadastrar(new Cliente(nome, dataNasc, telefone, numPassaporte));
+			Principal.exibirMenu();
+		}
 	}
 
 	private static void listar() {
-		
+		try (Scanner sc = new Scanner(System.in)) {
+			boolean concluido = false;
+
+			ClienteCRUD.listarCliente();
+
+			while (concluido == false) {
+				System.out.println("=====================================");
+				System.out.println("Deseja voltar ao menu?");
+				System.out.println("1 - SIM      2-NAO");
+				System.out.println("=====================================");
+
+				int opcao = sc.nextInt();
+
+				if (opcao == 1) {
+					Principal.exibirMenu();
+				} else if (opcao == 2) {
+					consultar();
+				}
+			}
+		}
 	}
 
 	private static void consultar() {
-		
+		try (Scanner sc = new Scanner(System.in)) {
+			boolean concluido = false;
+			System.out.print("Digite o ID do cliente que voce deseja consultar: ");
+			int id = sc.nextInt();
+
+			Cliente cliente = ClienteCRUD.consultarCliente(id);
+
+			cliente.mostrar();
+			
+			while (concluido == false) {
+				System.out.println("=====================================");
+				System.out.println("Deseja fazer uma nova consulta?");
+				System.out.println("1 - SIM      2-NAO");
+				System.out.println("=====================================");
+
+				int opcao = sc.nextInt();
+
+				if (opcao == 1) {
+					consultar();
+				} else if (opcao == 2) {
+					Principal.exibirMenu();
+				}
+			}
+		}
 	}
 
 	private static void editar() {
@@ -18,7 +94,29 @@ public class TelaCliente extends Tela {
 	}
 
 	private static void deletar() {
-		
+		try (Scanner sc = new Scanner(System.in)) {
+			limparTela();
+			ClienteCRUD.listarCliente();
+			System.out.print("Digite o ID do cliente que voce deseja deletar: ");
+			int id = sc.nextInt();
+
+			Cliente cliente= ClienteCRUD.consultarCliente(id);
+			cliente.mostrar();
+			
+			System.out.println("=====================================");
+			System.out.println("Deseja deletar esse cliente?");
+			System.out.println("1 - SIM      2-NAO");
+			System.out.println("=====================================");
+
+			int opcao = sc.nextInt();
+
+			if (opcao == 1) {
+				ClienteCRUD.removerPorId(id);
+				Principal.exibirMenu();
+			}else if(opcao == 2) {
+				Principal.exibirMenu();
+			}
+	}
 	}
 	
 	public static void exibirFormulario(int operacao) {

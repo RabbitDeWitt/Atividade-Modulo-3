@@ -20,11 +20,14 @@ public abstract class Tela {
 			System.out.println("               LISTAR               ");
 		break;
 		case 3: 
-			System.out.println("               EDITAR               ");
+			System.out.println("           CONSULTAR POR ID             ");
 		break;
 		case 4:
-			System.out.println("               DELETAR              ");
+			System.out.println("               EDITAR              ");
 		break;
+		case 5:
+			System.out.println("               DELETAR              ");
+			break;
 		default:
 			System.out.println("               MENU               ");			
 		break;

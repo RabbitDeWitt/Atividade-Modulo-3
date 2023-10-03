@@ -1,14 +1,12 @@
 package sistema_CRUD;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 import factory.ConnectionFactory;
-import model.Cliente;
 import model.Destino;
 
 
@@ -45,7 +43,7 @@ public class DestinoCRUD {
 		}
 	}
 	
-	public static List<Destino> listarDestino(){
+	public static void listarDestino(){
 		String sql = "SELECT * FROM destino";
 		List<Destino> destinos = new ArrayList<Destino>();
 		
@@ -84,7 +82,9 @@ public class DestinoCRUD {
 				e.printStackTrace();
 			}
 		}
-		return destinos;
+		for(Destino destino : destinos) {
+			destino.mostrar();
+		}
 	}
 	
 	public static Destino consultarDestino(int id) {

@@ -44,9 +44,9 @@ public class ClienteCRUD {
 			}
 		}
 		
-		public static List<Cliente> listarCliente(){
+		public static void listarCliente(){
 			String sql = "SELECT * FROM Cliente";
-			List<Cliente> Clientes = new ArrayList<Cliente>();
+			List<Cliente> clientes = new ArrayList<Cliente>();
 			
 			Connection con = null;
 			PreparedStatement pstm = null;
@@ -65,7 +65,7 @@ public class ClienteCRUD {
 					String telefone = resultado.getString("telefone");
 					String numPassaporte = resultado.getString("numPassaporte");
 					
-					Clientes.add(new Cliente(id ,nome, dataNasc, telefone, numPassaporte));
+					clientes.add(new Cliente(id ,nome, dataNasc, telefone, numPassaporte));
 				}
 				
 				
@@ -83,7 +83,9 @@ public class ClienteCRUD {
 					e.printStackTrace();
 				}
 			}
-			return Clientes;
+			for(Cliente cliente : clientes) {
+				cliente.mostrar();
+			}
 		}
 
 		public static Cliente consultarCliente(int id) {

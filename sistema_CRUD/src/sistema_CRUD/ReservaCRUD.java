@@ -134,6 +134,7 @@ public class ReservaCRUD {
 				
 			
 		} catch (Exception e) {
+			System.out.println("Reserva nao encontrada.");
 			e.printStackTrace();
 		}finally {
 			try {

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Principal extends Tela {
 	public static void exibirMenu() {
 		int opcao = 0; 
-		Scanner entrada = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		
 		limparTela();
 		
@@ -20,7 +20,7 @@ public class Principal extends Tela {
 		System.out.println("");
 		
 		System.out.print("Digite a opcao desejada: ");
-		opcao = entrada.nextInt();
+		opcao = sc.nextInt();
 		
 		
 		

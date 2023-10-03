@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import factory.ConnectionFactory;
-import model.Cliente;
 import model.Pacote;
 
 public class PacoteCRUD {
@@ -42,7 +41,7 @@ public class PacoteCRUD {
 		}
 	}
 	
-	public static List<Pacote> listarPacote(){
+	public static void listarPacote(){
 		String sql = "SELECT * FROM Pacote";
 		List<Pacote> pacotes = new ArrayList<Pacote>();
 		
@@ -79,7 +78,9 @@ public class PacoteCRUD {
 				e.printStackTrace();
 			}
 		}
-		return pacotes;
+		for (Pacote pacote : pacotes) {
+			pacote.mostrar();
+		}
 	}
 	
 	public static Pacote consultarPacote(int id) {

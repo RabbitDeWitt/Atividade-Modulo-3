@@ -19,21 +19,21 @@ public class Secundaria extends Tela{
 		
 		System.out.print("Digite a opcao desejada: ");
 		
-		Scanner entrada = new Scanner(System.in);
-		opcao = entrada.nextInt();
+		Scanner sc = new Scanner(System.in);
+		opcao = sc.nextInt();
 		
 		switch (opcao) {
 		case 1:
-			TelaCliente.exibirFormulario(operacao, opcao);
+			TelaCliente.exibirFormulario(operacao);
 		break;
 		case 2:
-			TelaDestino.exibirFormulario(operacao, opcao);
+			TelaDestino.exibirFormulario(operacao);
 			break;
 		case 3:
 			TelaReserva.exibirFormulario(operacao);
 			break;
 		case 4:
-			TelaPacote.exibirFormulario(operacao, opcao);
+			TelaPacote.exibirFormulario(operacao);
 			break;
 		case 5:
 			Principal.exibirMenu();			

@@ -97,12 +97,11 @@ public class PacoteCRUD {
 			pstm.setInt(1, id);
 			resultado = pstm.executeQuery();
 			
-			resultado.next(); 
-				
+			if(resultado.next()) {
 				pacote.setId(resultado.getInt("idPacote"));
 				pacote.setNome(resultado.getString("nome"));
-				pacote.setValor(resultado.getFloat("valorPacote"));
-				
+				pacote.setValor(resultado.getFloat("valorPacote"));				
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

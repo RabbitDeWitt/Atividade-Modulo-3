@@ -114,15 +114,14 @@ public class ReservaCRUD {
 			pstm.setInt(1, id);
 			resultado = pstm.executeQuery();
 			
-			resultado.next(); 
-			
-			int idCliente = resultado.getInt("idCliente");
-			int idDestino = resultado.getInt("idDestino");
-			int idPacote = resultado.getInt("idPacote");
-			
-			Cliente cliente = ClienteCRUD.consultarCliente(idCliente);
-			Destino destino = DestinoCRUD.consultarDestino(idDestino);
-			Pacote pacote = PacoteCRUD.consultarPacote(idPacote);
+			if(resultado.next()) {
+				int idCliente = resultado.getInt("idCliente");
+				int idDestino = resultado.getInt("idDestino");
+				int idPacote = resultado.getInt("idPacote");
+				
+				Cliente cliente = ClienteCRUD.consultarCliente(idCliente);
+				Destino destino = DestinoCRUD.consultarDestino(idDestino);
+				Pacote pacote = PacoteCRUD.consultarPacote(idPacote);
 				
 				reserva.setId(resultado.getInt("idReserva"));
 				reserva.setCliente(cliente);
@@ -130,7 +129,9 @@ public class ReservaCRUD {
 				reserva.setPacote(pacote);
 				reserva.setDataPartida(resultado.getDate("dataPartida"));
 				reserva.setDataRetorno(resultado.getDate("dataRetorno"));
-				reserva.setValorTotal(resultado.getFloat("valorTotal"));
+				reserva.setValorTotal(resultado.getFloat("valorTotal"));				
+			}
+			
 				
 			
 		} catch (Exception e) {
@@ -149,7 +150,11 @@ public class ReservaCRUD {
 			}
 			
 		}
-		reserva.mostrar();
+		if(reserva.getId() != 0) {
+			reserva.mostrar();			
+		}else {
+			System.out.println("Reserva nao encontrada...");
+		}
 	}
 	
 	public static void atualizar(Reserva reserva) {

@@ -10,12 +10,11 @@ public class TelaDestino extends Tela {
 		try (Scanner sc = new Scanner(System.in)) {
 			System.out.print("Digite o nome do destino: ");
 			String nome = sc.nextLine();
-			
 			System.out.print("Digite o estado: ");
-			String estado = sc.next();
+			String estado = sc.nextLine();
 			
 			System.out.print("Digite o pais: ");
-			String pais = sc.next();
+			String pais = sc.nextLine();
 			
 			System.out.print("Digite o valor da viagem base: ");
 			float valor = sc.nextFloat();
@@ -56,7 +55,11 @@ public class TelaDestino extends Tela {
 
 			Destino destino = DestinoCRUD.consultarDestino(id);
 
-			destino.mostrar();
+			if(destino.getId() != 0) {
+				destino.mostrar();
+			}else {
+				System.out.println("Destino nao encontrado...");
+			}
 			
 			while (concluido == false) {
 				System.out.println("=====================================");
@@ -81,15 +84,15 @@ public class TelaDestino extends Tela {
 
 			System.out.print("Qual destino voce deseja editar: ");
 			int id = sc.nextInt();
-
+			sc.nextLine();
 			System.out.print("Digite o novo nome do destino: ");
-			String nome = sc.next();
+			String nome = sc.nextLine();
 			
 			System.out.print("Digite o estado: ");
-			String estado = sc.next();
+			String estado = sc.nextLine();
 			
 			System.out.print("Digite o pais: ");
-			String pais = sc.next();
+			String pais = sc.nextLine();
 
 			System.out.print("Digite o novo valor base do destino: ");
 			float valor = sc.nextFloat();

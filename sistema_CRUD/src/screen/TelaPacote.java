@@ -10,7 +10,7 @@ public class TelaPacote extends Tela {
 	private static void cadastrar() {
 		try (Scanner sc = new Scanner(System.in)) {
 			System.out.print("Digite o nome do pacote: ");
-			String nome = sc.next();
+			String nome = sc.nextLine();
 			
 			System.out.print("Digite o valor do pacote: ");
 			float valor = sc.nextFloat();
@@ -52,7 +52,11 @@ public class TelaPacote extends Tela {
 
 			Pacote pacote = PacoteCRUD.consultarPacote(id);
 
-			pacote.mostrar();
+			if(pacote.getId() != 0) {
+				pacote.mostrar();				
+			}else {
+				System.out.println("Pacote nao encontrado...");
+			}
 			
 			while (concluido == false) {
 				System.out.println("=====================================");
@@ -77,9 +81,9 @@ public class TelaPacote extends Tela {
 
 			System.out.print("Qual pacote voce deseja editar: ");
 			int id = sc.nextInt();
-
+			sc.nextLine();
 			System.out.print("Digite o novo nome do pacote: ");
-			String nome = sc.next();
+			String nome = sc.nextLine();
 
 			System.out.print("Digite o novo valor do pacote: ");
 			float valor = sc.nextFloat();

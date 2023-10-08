@@ -6,8 +6,10 @@ import java.util.Date;
 import java.util.Scanner;
 
 import model.Cliente;
+import model.Destino;
 import model.Pacote;
 import sistema_CRUD.ClienteCRUD;
+import sistema_CRUD.DestinoCRUD;
 import sistema_CRUD.PacoteCRUD;
 
 public class TelaCliente extends Tela {
@@ -17,10 +19,16 @@ public class TelaCliente extends Tela {
 			System.out.print("Digite o nome do cliente: ");
 			String nome = sc.nextLine();
 			
-			
 			Date dataNasc = new Date();
-			System.out.print("Digite a data de nascimento: ");
-			String dataNascStr = sc.next();
+			System.out.print("Digite a data de nascimento (dd/MM/AAAA): ");
+			String dataNascStr = sc.nextLine();
+			
+			System.out.print("Digite o telefone (DDD) xxxx-xxxx: ");
+			String telefone = sc.nextLine();
+			
+			System.out.print("Digite o numero do passaporte: ");
+			String numPassaporte = sc.nextLine();
+			
 			
 			try {
 				dataNasc = sdf.parse(dataNascStr);
@@ -28,11 +36,6 @@ public class TelaCliente extends Tela {
 				e.printStackTrace();
 			}
 
-			System.out.print("Digite o telefone: ");
-			String telefone = sc.next();
-
-			System.out.print("Digite o numero do passaporte: ");
-			String numPassaporte = sc.next();
 
 			ClienteCRUD.cadastrar(new Cliente(nome, dataNasc, telefone, numPassaporte));
 			Principal.exibirMenu();
@@ -69,8 +72,13 @@ public class TelaCliente extends Tela {
 			int id = sc.nextInt();
 
 			Cliente cliente = ClienteCRUD.consultarCliente(id);
+			
 
-			cliente.mostrar();
+			if(cliente.getId() != 0) {
+				cliente.mostrar();				
+			}else {
+				System.out.println("Cliente nao encontrado...");
+			}
 			
 			while (concluido == false) {
 				System.out.println("=====================================");
@@ -90,7 +98,35 @@ public class TelaCliente extends Tela {
 	}
 
 	private static void editar() {
-		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		try (Scanner sc = new Scanner(System.in)) {
+			ClienteCRUD.listarCliente();
+
+			System.out.print("Qual cliente voce deseja editar: ");
+			int id = sc.nextInt();
+			sc.nextLine();
+			System.out.print("Digite o novo nome do cliente: ");
+			String nome = sc.nextLine();
+			
+			Date dataNasc = new Date();
+			System.out.print("Digite a data de nascimento (dd/MM/AAAA): ");
+			String dataNascStr = sc.nextLine();
+			
+			System.out.print("Digite o telefone (DDD) xxxx-xxxx: ");
+			String telefone = sc.nextLine();
+			
+			System.out.print("Digite o numero do passaporte: ");
+			String numPassaporte = sc.nextLine();
+			
+			try {
+				dataNasc = sdf.parse(dataNascStr);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+			ClienteCRUD.atualizar(new Cliente(id, nome, dataNasc, telefone, numPassaporte));
+			Principal.exibirMenu();
+		}
 	}
 
 	private static void deletar() {

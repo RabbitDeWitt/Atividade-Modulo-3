@@ -22,8 +22,6 @@ public class Principal extends Tela {
 		System.out.print("Digite a opcao desejada: ");
 		opcao = sc.nextInt();
 		
-		
-		
 		if(opcao >= 1 && opcao <= 5) {
 			Secundaria.exibirMenu(opcao);			
 		}else if(opcao == 6){
@@ -32,7 +30,6 @@ public class Principal extends Tela {
 			exibirMenu();			
 		}
 		
-		
-	} 	
 
+	} 	
 }

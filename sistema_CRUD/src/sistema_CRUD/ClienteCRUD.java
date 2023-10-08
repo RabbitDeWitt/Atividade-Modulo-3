@@ -91,10 +91,10 @@ public class ClienteCRUD {
 		public static Cliente consultarCliente(int id) {
 			String sql = "select * from cliente WHERE idCliente = ?";
 		
-			Cliente cliente = new Cliente();
 			Connection con = null;
 			PreparedStatement pstm = null;
 			ResultSet resultado = null;
+			Cliente cliente = new Cliente();
 			
 			try {
 				con = ConnectionFactory.criarConexao();
@@ -102,13 +102,14 @@ public class ClienteCRUD {
 				pstm.setInt(1, id);
 				resultado = pstm.executeQuery();
 				
-				resultado.next(); 
-					
+				if(resultado.next()) {
 					cliente.setId(resultado.getInt("idCliente"));
 					cliente.setNome(resultado.getString("nome"));
 					cliente.setDataNasc(resultado.getDate("dataNasc"));
 					cliente.setTelefone(resultado.getString("telefone"));
-					cliente.setNumPassaporte(resultado.getString("numPassaporte"));
+					cliente.setNumPassaporte(resultado.getString("numPassaporte"));					
+				}
+					
 					
 				
 			} catch (Exception e) {

@@ -101,15 +101,14 @@ public class DestinoCRUD {
 			pstm.setInt(1, id);
 			resultado = pstm.executeQuery();
 			
-			resultado.next(); 
-				
+			if(resultado.next()) {
 				destino.setId(resultado.getInt("idDestino"));
 				destino.setNome(resultado.getString("nome"));
 				destino.setEstado(resultado.getString("estado"));
 				destino.setPais(resultado.getString("pais"));
 				destino.setValor(resultado.getFloat("valor"));
+			}
 				
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {

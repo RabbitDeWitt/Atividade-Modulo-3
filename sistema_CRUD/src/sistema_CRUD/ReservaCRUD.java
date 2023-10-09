@@ -100,7 +100,7 @@ public class ReservaCRUD {
 		}
 	}
 	
-	public static void consultarReserva(int id) {
+	public static Reserva consultarReserva(int id) {
 		String sql = "select * from reserva WHERE idReserva = ?";
 
 		Reserva reserva = new Reserva();
@@ -150,11 +150,8 @@ public class ReservaCRUD {
 			}
 			
 		}
-		if(reserva.getId() != 0) {
-			reserva.mostrar();			
-		}else {
-			System.out.println("Reserva nao encontrada...");
-		}
+		
+		return reserva;
 	}
 	
 	public static void atualizar(Reserva reserva) {

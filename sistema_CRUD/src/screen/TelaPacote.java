@@ -96,12 +96,23 @@ public class TelaPacote extends Tela {
 	private static void deletar() {
 		try (Scanner sc = new Scanner(System.in)) {
 				limparTela();
-				PacoteCRUD.listarPacote();
-				System.out.print("Digite o ID do pacote que voce deseja deletar: ");
-				int id = sc.nextInt();
+				boolean pacoteValido = false;
+				int id = 0;
+				
+				while(pacoteValido == false) {
+					PacoteCRUD.listarPacote();
+					System.out.print("Digite o ID do pacote que voce deseja deletar: ");
+					id = sc.nextInt();
+					Pacote pacote = PacoteCRUD.consultarPacote(id);
+					
+					if(pacote.getId() != 0) {
+						pacote.mostrar();
+						pacoteValido = true;
+					}else {
+						System.out.println("Pacote nao encontrado...");
+					}
+				}
 
-				Pacote pacote = PacoteCRUD.consultarPacote(id);
-				pacote.mostrar();
 				
 				System.out.println("=====================================");
 				System.out.println("Deseja deletar esse pacote?");

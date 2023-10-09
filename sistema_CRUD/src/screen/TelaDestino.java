@@ -104,14 +104,23 @@ public class TelaDestino extends Tela {
 
 	private static void deletar() {
 		try (Scanner sc = new Scanner(System.in)) {
-
 				limparTela();
-				DestinoCRUD.listarDestino();
-				System.out.print("Digite o ID do destino que voce deseja deletar: ");
-				int id = sc.nextInt();
+				boolean destinoValido = false;
+				int id = 0;
+				while(destinoValido == false) {
+					DestinoCRUD.listarDestino();
+					System.out.print("Digite o ID do destino que voce deseja deletar: ");
+					id = sc.nextInt();
+					Destino destino = DestinoCRUD.consultarDestino(id);
 
-				Destino destino = DestinoCRUD.consultarDestino(id);
-				destino.mostrar();
+					if(destino.getId() != 0) {
+						destino.mostrar();
+						destinoValido = true;
+					}else {
+						System.out.println("Destino nao encotrado...");
+					}
+				}
+
 				
 				System.out.println("=====================================");
 				System.out.println("Deseja deletar esse destino?");

@@ -132,12 +132,22 @@ public class TelaCliente extends Tela {
 	private static void deletar() {
 		try (Scanner sc = new Scanner(System.in)) {
 			limparTela();
-			ClienteCRUD.listarCliente();
-			System.out.print("Digite o ID do cliente que voce deseja deletar: ");
-			int id = sc.nextInt();
-
-			Cliente cliente= ClienteCRUD.consultarCliente(id);
-			cliente.mostrar();
+			boolean clienteValido = false;
+			int id = 0;
+			
+			while(clienteValido == false) {
+				ClienteCRUD.listarCliente();
+				System.out.print("Digite o ID do cliente que voce deseja deletar: ");
+				id = sc.nextInt();
+				Cliente cliente = ClienteCRUD.consultarCliente(id);
+				if(cliente.getId() != 0) {
+					cliente.mostrar();
+					clienteValido = true;
+				}else {
+					System.out.println("Cliente nao encontrado...");
+				}
+				
+			}
 			
 			System.out.println("=====================================");
 			System.out.println("Deseja deletar esse cliente?");

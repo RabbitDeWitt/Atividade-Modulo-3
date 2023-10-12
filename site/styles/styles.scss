@@ -53,7 +53,7 @@ header {
 
     .offcanvas {
       background-color: $bg-color !important;
-      height: 300px !important;
+      height: fit-content !important;
 
       .offcanvas-header {
         padding-inline: 0px !important;

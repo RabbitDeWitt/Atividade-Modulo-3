@@ -40,7 +40,8 @@ header nav ul.navbar-nav li > a.nav-link:hover, header nav ul.navbar-nav li > a.
 }
 header nav .offcanvas {
   background-color: hsl(211, 21%, 15%) !important;
-  height: 300px !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
 }
 header nav .offcanvas .offcanvas-header {
   padding-inline: 0px !important;

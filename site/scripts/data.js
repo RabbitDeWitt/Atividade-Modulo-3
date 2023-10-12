@@ -15,6 +15,10 @@ export const navLinks = [
     texto: "Contato",
     link: "contato"
   },
+  {
+    texto: "Cadastro",
+    link: "formulario"
+  },
 ]
 
 export const destinos = [

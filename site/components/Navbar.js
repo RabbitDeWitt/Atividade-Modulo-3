@@ -2,11 +2,7 @@ import { navLinks } from "../scripts/data.js"
 
 export const Navbar = () => {
   let links = []
-  const logo = `
-  <a class="navbar-brand mx-3" id="logo-desktop" href="../home/index.html">
-    <img src="../../assets/plane.png" alt="Daviagens logo" width="30" height="30">
-  </a>
-  `
+
   navLinks.map(({ texto, link }) => {
     links.push(
       `
@@ -16,7 +12,6 @@ export const Navbar = () => {
       `
     )
   })
-  links.splice(2, 0, logo)
   links = links.join(' ')
   return `
   <nav class="navbar navbar-dark navbar-expand-lg" id="navbar">

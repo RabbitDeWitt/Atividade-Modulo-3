@@ -1,48 +1,34 @@
 package screen;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 
-import model.Cliente;
+import model.Contato;
 import sistema_CRUD.ClienteCRUD;
+import sistema_CRUD.ContatoCRUD;
 
-public class TelaCliente extends Tela {
+public class TelaContato extends Tela{
 	private static void cadastrar() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		try (Scanner sc = new Scanner(System.in)) {
-			System.out.print("Digite o nome do cliente: ");
+			System.out.print("Digite o nome: ");
 			String nome = sc.nextLine();
 			
-			Date dataNasc = new Date();
-			System.out.print("Digite a data de nascimento (dd/MM/AAAA): ");
-			String dataNascStr = sc.nextLine();
+			System.out.print("Digite email: ");
+			String email = sc.nextLine();
 			
-			System.out.print("Digite o telefone (DDD) xxxx-xxxx: ");
-			String telefone = sc.nextLine();
+			System.out.print("Digite a mensagem: ");
+			String msg = sc.nextLine();
 			
-			System.out.print("Digite o numero do passaporte: ");
-			String numPassaporte = sc.nextLine();
-			
-			
-			try {
-				dataNasc = sdf.parse(dataNascStr);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
 
-
-			ClienteCRUD.cadastrar(new Cliente(nome, dataNasc, telefone, numPassaporte));
+			ContatoCRUD.cadastrar(new Contato(nome, email, msg));
 			Principal.exibirMenu();
 		}
 	}
-
+	
 	private static void listar() {
 		try (Scanner sc = new Scanner(System.in)) {
 			boolean concluido = false;
 
-			ClienteCRUD.listarCliente();
+			ContatoCRUD.listarContato();
 
 			while (concluido == false) {
 				System.out.println("=====================================");
@@ -60,20 +46,20 @@ public class TelaCliente extends Tela {
 			}
 		}
 	}
-
+	
 	private static void consultar() {
 		try (Scanner sc = new Scanner(System.in)) {
 			boolean concluido = false;
-			System.out.print("Digite o ID do cliente que voce deseja consultar: ");
+			System.out.print("Digite o ID da mensagem que voce deseja consultar: ");
 			int id = sc.nextInt();
 
-			Cliente cliente = ClienteCRUD.consultarCliente(id);
+			Contato contato = ContatoCRUD.consultarContato(id);
 			
 
-			if(cliente.getId() != 0) {
-				cliente.mostrar();				
+			if(contato.getId() != 0) {
+				contato.mostrar();				
 			}else {
-				System.out.println("Cliente nao encontrado...");
+				System.out.println("Mensagem nao encontrada...");
 			}
 			
 			while (concluido == false) {
@@ -92,68 +78,58 @@ public class TelaCliente extends Tela {
 			}
 		}
 	}
-
+	
 	private static void editar() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		try (Scanner sc = new Scanner(System.in)) {
-			ClienteCRUD.listarCliente();
+			ContatoCRUD.listarContato();
 
 			System.out.print("Qual cliente voce deseja editar: ");
 			int id = sc.nextInt();
 			sc.nextLine();
-			System.out.print("Digite o novo nome do cliente: ");
+			
+			System.out.print("Digite o novo nome: ");
 			String nome = sc.nextLine();
 			
-			Date dataNasc = new Date();
-			System.out.print("Digite a data de nascimento (dd/MM/AAAA): ");
-			String dataNascStr = sc.nextLine();
+			System.out.print("Digite o novo email: ");
+			String email = sc.nextLine();
 			
-			System.out.print("Digite o telefone (DDD) xxxx-xxxx: ");
-			String telefone = sc.nextLine();
+			System.out.print("Digite a nova mensagem: ");
+			String msg = sc.nextLine();
 			
-			System.out.print("Digite o numero do passaporte: ");
-			String numPassaporte = sc.nextLine();
-			
-			try {
-				dataNasc = sdf.parse(dataNascStr);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-
-			ClienteCRUD.atualizar(new Cliente(id, nome, dataNasc, telefone, numPassaporte));
+			ContatoCRUD.atualizar(new Contato(id, nome, email, msg));
 			Principal.exibirMenu();
 		}
 	}
-
+	
 	private static void deletar() {
 		try (Scanner sc = new Scanner(System.in)) {
 			limparTela();
-			boolean clienteValido = false;
+			boolean contatoValido = false;
 			int id = 0;
 			
-			while(clienteValido == false) {
-				ClienteCRUD.listarCliente();
-				System.out.print("Digite o ID do cliente que voce deseja deletar: ");
+			while(contatoValido == false) {
+				ContatoCRUD.listarContato();
+				System.out.print("Digite o ID mensagem que voce deseja deletar: ");
 				id = sc.nextInt();
-				Cliente cliente = ClienteCRUD.consultarCliente(id);
-				if(cliente.getId() != 0) {
-					cliente.mostrar();
-					clienteValido = true;
+				Contato contato = ContatoCRUD.consultarContato(id);
+				if(contato.getId() != 0) {
+					contato.mostrar();
+					contatoValido = true;
 				}else {
-					System.out.println("Cliente nao encontrado...");
+					System.out.println("Mensagem nao encontrada...");
 				}
 				
 			}
 			
 			System.out.println("=====================================");
-			System.out.println("Deseja deletar esse cliente?");
+			System.out.println("Deseja deletar essa mensagem?");
 			System.out.println("1 - SIM      2-NAO");
 			System.out.println("=====================================");
 
 			int opcao = sc.nextInt();
 
 			if (opcao == 1) {
-				ClienteCRUD.removerPorId(id);
+				ContatoCRUD.removerPorId(id);
 				Principal.exibirMenu();
 			}else if(opcao == 2) {
 				Principal.exibirMenu();
@@ -181,5 +157,4 @@ public class TelaCliente extends Tela {
 			break;
 		}
 	}
-
 }

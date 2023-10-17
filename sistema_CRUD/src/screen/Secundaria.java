@@ -14,7 +14,8 @@ public class Secundaria extends Tela{
 		System.out.println("2 - Destino");
 		System.out.println("3 - Reserva");
 		System.out.println("4 - Pacote");
-		System.out.println("5 - Voltar");
+		System.out.println("5 - Contato");
+		System.out.println("6 - Voltar");
 		System.out.println("");
 		
 		System.out.print("Digite a opcao desejada: ");
@@ -36,6 +37,9 @@ public class Secundaria extends Tela{
 			TelaPacote.exibirFormulario(operacao);
 			break;
 		case 5:
+			TelaContato.exibirFormulario(operacao);
+			break;
+		case 6:
 			Principal.exibirMenu();			
 			break;
 		default:

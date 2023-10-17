@@ -21,6 +21,13 @@ nome varchar(50),
 valorPacote float(7)
 );
 
+CREATE TABLE Contato (
+idContato int primary key not null auto_increment,
+mensagem varchar(150),
+email varchar(50),
+nome varchar(50)
+);
+
 CREATE TABLE Reserva (
 idReserva int primary key not null auto_increment,
 idPacote int,
